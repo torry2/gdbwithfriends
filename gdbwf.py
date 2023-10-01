@@ -4,6 +4,9 @@ import requests
 import psutil
 import time
 
+#CHANGE PATH FILE THING
+path_to_file = '' # e.g /home/torry/time.file (MUST BE "time.file")
+
 name = '<name>'
 webhook = 'https://discord.com/api/webhooks/<webhook>'
 timer = None
@@ -43,13 +46,13 @@ class gdbwithfriends(gdb.Command):
         if timer is not None:
             elapsed = time.time() - timer
 
-        with open("time.file", "r") as f:
+        with open(path_to_file, "r") as f:
             thetotal = f.read()
             if thetotal == '':
                 thetotal = 0
         tt = elapsed + float(thetotal)
         #print(tt)  
-        with open("time.file", "w") as ff:
+        with open(path_to_file, "w") as ff:
             ff.write(str(tt))      
         self.post(elapsed, tt)
         gdb.write(f"GDBWF: gdbwithfriends stopped!\n\tElapsed Session: {round(elapsed, 2)} (s)\n\tElapsed Total: {round(tt, 2)} (s)\n")
@@ -78,7 +81,7 @@ class gdbwithfriends(gdb.Command):
     def time(self, args):
         global timer
         tmpelapsed = time.time() - timer
-        with open("time.file", "r") as f:
+        with open(path_to_file, "r") as f:
             thetotal = f.read()
         total = tmpelapsed + float(thetotal)
         gdb.write(f"GDBWF: Time\n\tElapsed Session: {round(tmpelapsed, 2)} (s)\n\tElapsed Total: {round(total, 2)} (s)\n")
