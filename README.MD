@@ -20,6 +20,7 @@ Modify `.gdbinit` to source the plugin:
 ```
 source ~/gdbwithfriends/gdbwf.py
 ```
+change `path_to_file` to the repos location + "time.file", update `name` and `webhook` to whats desired also !
 
 Done!
 
